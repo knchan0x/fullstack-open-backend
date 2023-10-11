@@ -1,0 +1,23 @@
+{
+  "name": "fullstack-open-backend",
+  "version": "0.0.1",
+  "description": "backend part of fullstack-open",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:ui": "rm -rf dist && cd ../fullstack-open/part2/phonebook/ && npm run build && cp -r ./dist ../../../fullstack-open-backend/",
+    "build": "npm run build:ui"
+  },
+  "author": "Michael Chan",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
