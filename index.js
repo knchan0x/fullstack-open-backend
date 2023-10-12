@@ -18,7 +18,7 @@ app.use(
 );
 app.use(cors());
 
-app.get("/info", (response) => {
+app.get("/info", (_, response) => {
   Person.find({}).then((persons) => {
     response.send(
       `<p>phonebook has info for ${persons.length} people</p><p>${new Date(
@@ -28,7 +28,7 @@ app.get("/info", (response) => {
   });
 });
 
-app.get("/api/persons", (response) => {
+app.get("/api/persons", (_, response) => {
   Person.find({}).then((persons) => {
     response.json(persons);
     // FIXME: close connection
@@ -89,14 +89,14 @@ app.put("/api/persons/:id", (request, response, next) => {
     .catch((error) => next(error));
 });
 
-const unknownEndpoint = (request, response) => {
+const unknownEndpoint = (_, response) => {
   response.status(404).send({ error: "unknown endpoint" });
 };
 
 // handler of requests with unknown endpoint
 app.use(unknownEndpoint);
 
-const errorHandler = (error, request, response, next) => {
+const errorHandler = (error, _, response, next) => {
   console.error(error.message);
 
   if (error.name === "CastError") {
